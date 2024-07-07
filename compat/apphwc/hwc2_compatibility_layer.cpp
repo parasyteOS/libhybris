@@ -7,8 +7,8 @@
 
 #include <aidl/android/hardware/graphics/common/HardwareBuffer.h>
 #include <aidl/android/hardware/graphics/common/HardwareBufferDescription.h>
-#include <aidl/vendor/lindroid/composer/BnComposerCallback.h>
-#include <aidl/vendor/lindroid/composer/IComposer.h>
+#include <aidl/vendor/parasyte/composer/BnComposerCallback.h>
+#include <aidl/vendor/parasyte/composer/IComposer.h>
 #include <aidlcommonsupport/NativeHandle.h>
 
 #include <android/binder_manager.h>
@@ -16,7 +16,7 @@
 
 namespace aidl {
 namespace vendor {
-namespace lindroid {
+namespace parasyte {
 namespace composer {
 
 class ComposerCallbackImpl : public BnComposerCallback {
@@ -43,7 +43,7 @@ private:
 };
 
 } // namespace composer
-} // namespace lindroid
+} // namespace parasyte
 } // namespace vendor
 } // namespace aidl
 
@@ -54,9 +54,9 @@ using aidl::android::hardware::graphics::common::BufferUsage;
 using aidl::android::hardware::graphics::common::HardwareBuffer;
 using aidl::android::hardware::graphics::common::HardwareBufferDescription;
 using aidl::android::hardware::graphics::common::PixelFormat;
-using aidl::vendor::lindroid::composer::ComposerCallbackImpl;
-using aidl::vendor::lindroid::composer::DisplayConfiguration;
-using aidl::vendor::lindroid::composer::IComposer;
+using aidl::vendor::parasyte::composer::ComposerCallbackImpl;
+using aidl::vendor::parasyte::composer::DisplayConfiguration;
+using aidl::vendor::parasyte::composer::IComposer;
 
 struct hwc2_compat_device
 {
@@ -88,7 +88,7 @@ hwc2_compat_device_t* hwc2_compat_device_new(bool useVrComposer)
 
     ABinderProcess_startThreadPool();
 
-    ndk::SpAIBinder binder(AServiceManager_waitForService("vendor.lindroid.composer"));
+    ndk::SpAIBinder binder(AServiceManager_waitForService("vendor.parasyte.composer"));
     device->self = IComposer::fromBinder(binder);
 
     return device;

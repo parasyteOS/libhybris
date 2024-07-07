@@ -12,7 +12,7 @@ cc_library_shared {
         "libui",
         "libnativewindow",
         "libhardware",
-        "vendor.lindroid.composer-ndk",
+        "vendor.parasyte.composer-ndk",
     ],
     static_libs: [
         "libaidlcommonsupport",
