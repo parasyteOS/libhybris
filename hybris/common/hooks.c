@@ -2936,6 +2936,12 @@ static ssize_t _hybris_hook_MEOW_get_tls_meow_offset()
 }
 #endif
 
+static void _hybris_hook___cfi_slowpath()
+{
+    TRACE_HOOK("Skip __cfi_slowpath as it will cause segfault in libhybris.");
+    return;
+}
+
 // old property hooks for pre-android 8 approach
 static struct _hook hooks_properties[] = {
     HOOK_INDIRECT(property_get),
@@ -3259,6 +3265,8 @@ static struct _hook hooks_common[] = {
 #ifdef MALI_QUIRKS
     HOOK_INDIRECT(MEOW_get_tls_meow_offset),
 #endif
+    HOOK_DIRECT_NO_DEBUG(__ctype_get_mb_cur_max),
+    HOOK_INDIRECT(__cfi_slowpath),
 };
 
 static struct _hook hooks_mm[] = {
